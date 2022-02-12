@@ -18,7 +18,12 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
 
-    
+
+    private void Awake()
+    {
+        ScoreText.text = $"Name: {GetUserName()} | Score : {m_Points}";
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,12 +70,17 @@ public class MainManager : MonoBehaviour
     void AddPoint(int point)
     {
         m_Points += point;
-        ScoreText.text = $"Score : {m_Points}";
+        ScoreText.text = $"Name: {GetUserName()} | Score : {m_Points}";
     }
 
     public void GameOver()
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+    }
+
+    public string GetUserName()
+    {
+        return DataManager.Instance.userName;
     }
 }
